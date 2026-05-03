@@ -1,17 +1,16 @@
 import pygame
-from circleshape import CircleShape
+from polygonshape import PolygonShape
 from constants import SHOT_RADIUS
 from constants import LINE_WIDTH
 
-class Shot(CircleShape):
-    def __init__(self, x, y):
-        super().__init__(x, y, SHOT_RADIUS)
+class Shot(PolygonShape):
+    def __init__(self, x, y, num_sides, rotation):
+        super().__init__(x, y, num_sides, SHOT_RADIUS, 0, rotation)
 
     def draw(self, screen):
-        pygame.draw.circle(screen,
-                           "white",
-                           self.position,
-                           self.radius,
-                           LINE_WIDTH)
+        pygame.draw.polygon(screen,
+                            "white",
+                            self.verticies,
+                            LINE_WIDTH)
     def update(self, dt):
         self.position += self.velocity * dt
