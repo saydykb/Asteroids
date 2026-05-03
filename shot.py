@@ -10,7 +10,7 @@ class Shot(PolygonShape):
     def draw(self, screen):
         pygame.draw.polygon(screen,
                             "white",
-                            self.verticies,
+                            self.vertices,
                             LINE_WIDTH)
     def update(self, dt):
         self.position += self.velocity * dt

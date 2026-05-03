@@ -20,7 +20,7 @@ class Player(PolygonShape):
     def forward(self):
         return pygame.Vector2(0, -1).rotate(self.rotation)
     def draw(self, screen):
-        pygame.draw.polygon(screen, "white", self.verticies, LINE_WIDTH)
+        pygame.draw.polygon(screen, "white", self.vertices, LINE_WIDTH)
 
     def rotate(self, dt):
         self.rotation += dt * PLAYER_TURN_SPEED
