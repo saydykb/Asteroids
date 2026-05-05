@@ -11,8 +11,8 @@ from constants import SCREEN_HEIGHT
 
 class PlayState(GameState):
 
-    def __init__(self, screen, clock):
-        super().__init__(screen, clock)
+    def __init__(self, game):
+        super().__init__(game)
     # add groups
         self.asteroids = pygame.sprite.Group()
         self.shots = pygame.sprite.Group()
@@ -30,7 +30,7 @@ class PlayState(GameState):
                if self.player.collides_with(asteroid):
                 log_event("player_hit")
                 print("Game over!")
-                sys.exit()
+                self.game.change_state("menu")
         for asteroid in self.asteroids:
             for shot in self.shots:
                 if shot.collides_with(asteroid):
