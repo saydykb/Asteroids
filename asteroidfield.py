@@ -6,6 +6,8 @@ from constants import SCREEN_WIDTH
 from constants import ASTEROID_SPAWN_RATE_SECONDS
 from constants import ASTEROID_MAX_RADIUS
 from constants import ASTEROID_MIN_SIDES
+from constants import ASTEROID_MIN_STRETCH_FACTOR
+from constants import ASTEROID_MAX_STRETCH_FACTOR
 
 class AsteroidField(pygame.sprite.Sprite):
     edges = [
@@ -34,7 +36,9 @@ class AsteroidField(pygame.sprite.Sprite):
         self.game_timer = 0
 
     def spawn(self, num_sides, position, velocity):
-        asteroid = Asteroid(position.x, position.y, num_sides)
+        h_scale = random.uniform(ASTEROID_MIN_STRETCH_FACTOR * num_sides, ASTEROID_MAX_STRETCH_FACTOR * num_sides)
+        v_scale = 1
+        asteroid = Asteroid(position.x, position.y, num_sides, h_scale, v_scale)
         asteroid.velocity = velocity
 
     def update(self, dt):

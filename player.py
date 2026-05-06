@@ -7,12 +7,21 @@ from constants import PLAYER_SHOT_SPEED
 from constants import PLAYER_SHOT_COOLDOWN_SECONDS
 from constants import PLAYER_SIDES_INITIAL
 from constants import SHOT_SIDES_INITIAL
+from constants import PLAYER_H_SCALE
+from constants import PLAYER_V_SCALE
 from polygonshape import PolygonShape
 from shot import Shot
 
 class Player(PolygonShape):
     def __init__( self, x, y ):
-        super().__init__( x, y, PLAYER_SIDES_INITIAL, PLAYER_RADIUS)
+        super().__init__( 
+                         x, 
+                         y, 
+                         PLAYER_SIDES_INITIAL, 
+                         PLAYER_RADIUS,
+                         h_scale = PLAYER_H_SCALE,
+                         v_scale = PLAYER_V_SCALE
+                         )
         self.shot_cooldown_timer = 0
         self.shot_sides = SHOT_SIDES_INITIAL
     

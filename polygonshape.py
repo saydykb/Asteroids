@@ -4,7 +4,7 @@ from random import randint
 # Base class for game objects
 class PolygonShape(pygame.sprite.Sprite):
 # constructor
-    def __init__(self, x, y, number_sides, radius, noise=0, rotation=0):
+    def __init__(self, x, y, number_sides, radius, noise=0, rotation=0, h_scale = 1, v_scale = 1):
         if number_sides < 3:
             raise ValueError("Polygons must have at least 3 sides")
         # grabs container init
@@ -16,6 +16,8 @@ class PolygonShape(pygame.sprite.Sprite):
 # general shape info
         self.number_sides = number_sides
         self.radius = radius
+        self.h_scale = h_scale
+        self.v_scale = v_scale
 # generate local shape
         self.shape = self._generate_polygon(radius, noise)
         self.shape_normals = self._calculate_normals()
@@ -59,6 +61,9 @@ class PolygonShape(pygame.sprite.Sprite):
                 radius * ( 1 + random.uniform(-noise,noise) )
                 for i in range(self.number_sides)
                 ]
+        for point in points:
+            point.x *= self.h_scale
+            point.y *= self.v_scale
         return points
 
     def _calculate_edges(self):

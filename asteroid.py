@@ -9,8 +9,16 @@ from constants import ASTEROID_MIN_RADIUS
 
 class Asteroid(PolygonShape):
 
-    def __init__(self, x, y, number_sides):
-        super().__init__(x, y, number_sides, ASTEROID_MIN_RADIUS * number_sides, ASTEROID_NOISE, random.uniform(0, 360))
+    def __init__(self, x, y, number_sides, h_scale, v_scale):
+        super().__init__(x, 
+                         y, 
+                         number_sides, 
+                         ASTEROID_MIN_RADIUS * number_sides, 
+                         ASTEROID_NOISE, 
+                         random.uniform(0, 360),
+                         h_scale,
+                         v_scale
+                         )
 
     def draw(self, screen):
         pygame.draw.polygon(screen, 
@@ -33,10 +41,16 @@ class Asteroid(PolygonShape):
             new_asteroid_sides = self.number_sides - 1
             split_asteroid_1 = Asteroid(self.position.x, 
                                         self.position.y, 
-                                        new_asteroid_sides)
+                                        new_asteroid_sides,
+                                        self.h_scale,
+                                        self.v_scale
+                                        )
             split_asteroid_2 = Asteroid(self.position.x,
                                         self.position.y,
-                                        new_asteroid_sides)
+                                        new_asteroid_sides,
+                                        self.h_scale,
+                                        self.v_scale
+                                        )
             split_asteroid_1.velocity = split_velocity_1 * 1.2
             split_asteroid_2.velocity = split_velocity_2 * 1.2
 
